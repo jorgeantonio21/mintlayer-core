@@ -40,6 +40,6 @@ impl Genesis {
 impl Idable for Genesis {
     type Tag = Genesis;
     fn get_id(&self) -> Id<Self::Tag> {
-        Id::new(&id::hash_encoded(&self))
+        Id::new(id::hash_encoded(&self))
     }
 }
