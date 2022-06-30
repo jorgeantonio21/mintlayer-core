@@ -1,5 +1,6 @@
 pub mod block;
 pub mod config;
+pub mod genesis;
 mod pow;
 pub mod transaction;
 mod upgrades;
