@@ -223,6 +223,10 @@ impl Backend {
 
                 response.send(Ok(())).map_err(|_| P2pError::ChannelClosed)
             }
+            types::Command::BanPeer { peer_id, response } => {
+                self.swarm.ban_peer_id(peer_id);
+                response.send(Ok(())).map_err(|_| P2pError::ChannelClosed)
+            }
         }
     }
 }

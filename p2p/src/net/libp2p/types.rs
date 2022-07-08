@@ -117,6 +117,12 @@ pub enum Command {
         topics: Vec<Topic>,
         response: oneshot::Sender<crate::Result<()>>,
     },
+
+    /// Ban remote peer
+    BanPeer {
+        peer_id: PeerId,
+        response: oneshot::Sender<crate::Result<()>>,
+    },
 }
 
 #[derive(Debug)]
