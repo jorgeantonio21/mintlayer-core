@@ -92,6 +92,12 @@ where
         }
     }
 
+    /// Get mutable reference to the `ConnectivityHandle`
+    #[allow(dead_code)]
+    fn handle_mut(&mut self) -> &mut T::ConnectivityHandle {
+        &mut self.handle
+    }
+
     /// Update the list of known peers or known peer's list of addresses
     fn peer_discovered(&mut self, peers: &[net::types::AddrInfo<T>]) {
         self.peerdb.discover_peers(peers)
@@ -191,7 +197,13 @@ where
         );
 
         let peer_id = info.peer_id;
-        self.peers.insert(info.peer_id, peerdb::PeerContext { _info: info, score: 0 });
+        self.peers.insert(
+            info.peer_id,
+            peerdb::PeerContext {
+                _info: info,
+                score: 0,
+            },
+        );
         self.tx_sync
             .send(event::SyncControlEvent::Connected(peer_id))
             .await
